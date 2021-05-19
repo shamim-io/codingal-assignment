@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Accessibility from "./Accessibility";
 import { MenuToggle } from "./MenuToggle";
@@ -36,7 +37,7 @@ const LinkItem = styled.li`
   }
 `;
 
-const Link = styled.a`
+const Linki = styled.a`
   text-decoration: none;
   color: inherit;
   font-size: inherit;
@@ -50,10 +51,18 @@ function MobileNavLinks() {
       {isOpen && (
         <LinkWrapper>
           <LinkItem>
-            <Link href="#">Trial Lesson [Grade 1-3]</Link>
+            <Linki href="#">Trial Lesson [Grade 1-3]</Linki>
           </LinkItem>
           <LinkItem>
-            <Link>Posts</Link>
+            <Linki>
+              <Link
+                to="/posts"
+                className="cursor-pointer"
+                onClick={() => setOpen(!isOpen)}
+              >
+                Posts
+              </Link>
+            </Linki>
           </LinkItem>
           <LinkItem>
             <Accessibility />

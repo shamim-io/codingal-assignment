@@ -66,18 +66,18 @@ function Accessibility() {
   const [reason, setReason] = useState(false);
   const [otherReason, setOtherReason] = useState(false);
 
-  let interval = useRef();
+  var interval = useRef();
 
-  const startTimer = () => {
-    let next = new Date().getTime();
+  var startTimer = () => {
+    var next = new Date().getTime();
     next = next + 10 * 60000; // Adding 10 minutes
 
     interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = next - now;
+      var now = new Date().getTime();
+      var distance = next - now;
 
-      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       if (distance < 0) {
         //stop
@@ -97,7 +97,6 @@ function Accessibility() {
     };
   }, []);
 
-  var subtitle;
   function openModal() {
     setIsOpen(true);
   }
@@ -115,10 +114,12 @@ function Accessibility() {
   const radioChange = () => setReason(true);
 
   const endClass = () => {
+    clearInterval(interval.current);
     setTimerMinutes(0);
     setTimerSeconds(0);
     setIsOpen(false);
     setReason(false);
+    // startTimer();
   };
 
   const otherReasonOption = () => {
@@ -152,6 +153,7 @@ function Accessibility() {
                 onClick={() => setReason(false)}
                 name="one"
                 className="m-2"
+                required="true"
               />{" "}
               Class completed
             </div>
